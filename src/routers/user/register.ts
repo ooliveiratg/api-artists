@@ -1,51 +1,18 @@
-import express from 'express';
-import { PrismaClient } from '../../models/generated/client/index.js';
-// import jwt from 'jsonwebtoken';
+import express from "express";
 
-interface User {
-    name?: string;
-    email: string;
-    password: string;
-}
+import { RegisterUser } from "../../middlewares/user/userController.js";
 
 
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = process.env.JWT_SECRET;
 
+  router.post("/register", RegisterUser) 
 
-
-
-export function register() {
-    router.post('/register', async (req, res) => {
-    try{
-        const user:User = req.body
-
-       if(user.email.includes('@') && user.password.length >= 8 ){
-        const userDB = await prisma.user.create({
-            data:{
-               
-                email: user.email,
-                password: user.password,
-                name: user.name
-            }
-        })
-        res.status(200).json({message: 'Usuário criado com sucesso'})
-       }else{
-        res.status(400).json({ error: 'Email inválido ou senha muito curta' });
-       }
-
-       
-        
-    }catch(error){
-        res.status(500).json({ error: 'Erro na criação' });
-    }
-})
-
-    return router;
-}
+  router.post("/login",)
+    
+export default router
 
 //como meu prisma está está no src/models/generated/client, um lugar customizado, no terminal eu preciso passar o caminho do arquivo de schema.prisma para o prisma client, assim:
 // npx prisma generate --schema=src/models/prisma/schema.prisma

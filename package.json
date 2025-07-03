@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "npx prisma generate --schema=src/models/prisma/schema.prisma",
     "dev": "tsx watch src/server.ts"
   },
   "keywords": [],
@@ -13,10 +14,12 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.11.0",
+    "bcrypt": "^6.0.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.10",
     "prisma": "^6.11.0",
