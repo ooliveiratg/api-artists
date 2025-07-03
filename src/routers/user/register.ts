@@ -1,16 +1,14 @@
 import express from "express";
 
-import { RegisterUser } from "../../middlewares/user/userController.js";
+import { RegisterUser, LoginUser } from "../../middlewares/user/userController.js";
 
 
 
 const router = express.Router();
 
-const JWT_SECRET = process.env.JWT_SECRET;
-
   router.post("/register", RegisterUser) 
 
-  router.post("/login",)
+  router.post("/login", LoginUser)
     
 export default router
 
