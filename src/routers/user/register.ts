@@ -3,6 +3,8 @@ import express from "express";
 import { RegisterUser } from "../../controllers/user/register.js";
 import { LoginUser } from "../../controllers/user/login.js";
 import { ListingUsers } from "../../controllers/user/listing.js";
+import { DeleteUser } from "../../controllers/user/delete.js";
+
 
 
 
@@ -11,6 +13,7 @@ const router = express.Router();
   router.post("/register", RegisterUser) 
   router.get('/all',ListingUsers)
   router.post("/login", LoginUser)
+  router.delete("/delete/:id", DeleteUser)
     
 export default router
 

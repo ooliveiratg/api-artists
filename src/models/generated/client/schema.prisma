@@ -20,3 +20,18 @@ model User {
   password String
   name     String?
 }
+
+model Artist {
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  name  String
+  genre String
+  image String?
+  Songs Song[]
+}
+
+model Song {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  artistId String @db.ObjectId
+  artist   Artist @relation(fields: [artistId], references: [id])
+}

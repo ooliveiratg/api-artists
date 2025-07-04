@@ -120,6 +120,19 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.ArtistScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  genre: 'genre',
+  image: 'image'
+};
+
+exports.Prisma.SongScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  artistId: 'artistId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -132,7 +145,9 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Artist: 'Artist',
+  Song: 'Song'
 };
 
 /**
