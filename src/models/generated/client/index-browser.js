@@ -117,7 +117,16 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
-  name: 'name'
+  name: 'name',
+  role: 'role'
+};
+
+exports.Prisma.AdminScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+  role: 'role'
 };
 
 exports.Prisma.ArtistScalarFieldEnum = {
@@ -142,10 +151,14 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.Role = exports.$Enums.Role = {
+  user: 'user',
+  admin: 'admin'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
+  Admin: 'Admin',
   Artist: 'Artist',
   Song: 'Song'
 };

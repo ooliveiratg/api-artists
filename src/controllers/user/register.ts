@@ -1,7 +1,6 @@
-import { PrismaClient } from "../../models/generated/client/index.js";
+import { PrismaClient, Role } from "../../models/generated/client/index.js";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken';
 import { User } from "../../models/interfaces/interfaces.js";
 
 
@@ -27,11 +26,12 @@ export const RegisterUser = async (req:Request, res:Response) => {
       if (existingUser) {
         return res.status(400).json({ message: "Usuário já existe" });
       }
-      const userDB = await prisma.user.create({
+      await prisma.user.create({
         data: {
           email: user.email,
           password: hashedPassword,
           name: user.name,
+          role: Role.user
         },
       });
 

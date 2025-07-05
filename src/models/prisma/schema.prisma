@@ -19,6 +19,20 @@ model User {
   email String @unique
   password String 
   name String?
+  role Role @default(user) 
+}
+
+model Admin {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  password String 
+  name String?
+  role Role @default(admin) 
+}
+
+enum Role {
+  user
+  admin
 }
 
 model Artist{

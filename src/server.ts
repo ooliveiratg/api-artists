@@ -1,5 +1,6 @@
 import express from 'express';
-import UserRegister from './routers/user/register.js';
+import UserRouters from './routers/user.js';
+import AdminRouters from './routers/admin/admin.js';
 
 
 
@@ -7,7 +8,8 @@ const server = express();
 const port = 3000;
 server.use(express.json())
 
-server.use('/user', UserRegister);
+server.use('/user', UserRouters);
+server.use('/admin', AdminRouters);
 
 
 
