@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
 const JWT_SECRET = process.env.JWT_SECRET;
 
-const authMiddleware = (req, res, next) => {
+
+export const authMiddleware = (req:Request, res:Response, next:NextFunction) => {
     const token = req.headers.authorization;
     if(!token) {
         return res.status(401).json({ message: "Token não fornecido" });
@@ -13,7 +15,7 @@ const authMiddleware = (req, res, next) => {
         const admin = req.headers.admin;
         console.log("Admin:", admin);
         const decoded = jwt.verify(token.replace('Bearer ', ''), JWT_SECRET );
-        req
+        console.log("Decoded:", decoded);
         
         next();
     } catch (err) {

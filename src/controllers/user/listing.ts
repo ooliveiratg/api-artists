@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export const ListingUsers = async (req: Request, res: Response) => {
     try{
-        const users = await prisma.user.findMany({omit: {password: true}})
+        const users = await prisma.user.findMany({omit: {password: true}});
 
         return res.status(200).json(users);
     }catch (error){

@@ -30,8 +30,7 @@ export const RegisterUser = async (req:Request, res:Response) => {
         data: {
           email: user.email,
           password: hashedPassword,
-          name: user.name,
-          role: Role.user
+          name: user.name
         },
       });
 
