@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
 import { User } from "../../models/interfaces/interfaces.js";
+import { replace } from "react-router-dom";
 
 
 const prisma = new PrismaClient();
@@ -34,8 +35,9 @@ if (!JWT_SECRET) {
        return res.status(400).json({ message: "Senha incorreta" });
     }
 
-    const token = jwt.sign({id: userDB?.id, name: userDB?.name}, JWT_SECRET, {expiresIn: '1h'});
-    return res.status(200).json(token)
+    const token = jwt.sign({id: userDB?.id, name: userDB?.name, role: userDB.role}, JWT_SECRET, {expiresIn: '1h'});
+
+    return res.status(200).send(token);
   } catch (error) {
     console.error(`Erro ao fazer login: ${error}`);
     return res.status(500).json({ message: "Erro interno do servidor" });

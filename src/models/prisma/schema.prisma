@@ -39,13 +39,27 @@ model Artist{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String 
   genre String
-  image String?
+  imageURL String?
+  imageBase64 String?
   Songs Song[]  
+  Albuns Album[]
+}
+
+model Album {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  artistId String  @db.ObjectId
+  artist Artist @relation(fields: [artistId], references: [id]) 
+  songs Song[]
 }
 
 model Song {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   artistId String  @db.ObjectId
-  artist Artist @relation(fields: [artistId], references: [id]) 
+  artist Artist @relation(fields: [artistId], references: [id])
+  imageURL String?
+  imageBase64 String? 
+  albumId String? @db.ObjectId
+  album Album? @relation(fields: [albumId], references: [id])
 }
