@@ -14,8 +14,6 @@ export const authMiddleware = (req:Request, res:Response, next:NextFunction) => 
         return res.status(500).json({ message: "JWT_SECRET não configurado" });
     }
     try{
-
-        
         const decoded = jwt.verify(token.replace('Bearer ', ''), JWT_SECRET ) as jwt.JwtPayload & JWTDecoded;
 
         if(decoded.role !== "admin" ){

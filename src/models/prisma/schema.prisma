@@ -37,7 +37,7 @@ enum Role {
 
 model Artist{
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String 
+  name String @unique
   genre String
   imageURL String?
   imageBase64 String?
@@ -51,6 +51,8 @@ model Album {
   artistId String  @db.ObjectId
   artist Artist @relation(fields: [artistId], references: [id]) 
   songs Song[]
+  imgageURL String?
+  imageBase64 String?
 }
 
 model Song {

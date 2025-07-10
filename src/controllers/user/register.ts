@@ -1,4 +1,4 @@
-import { PrismaClient, Role } from "../../models/generated/client/index.js";
+import { PrismaClient } from "../../models/generated/client/index.js";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { User } from "../../models/interfaces/interfaces.js";

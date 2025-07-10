@@ -4185,18 +4185,24 @@ export namespace Prisma {
     id: string | null
     title: string | null
     artistId: string | null
+    imgageURL: string | null
+    imageBase64: string | null
   }
 
   export type AlbumMaxAggregateOutputType = {
     id: string | null
     title: string | null
     artistId: string | null
+    imgageURL: string | null
+    imageBase64: string | null
   }
 
   export type AlbumCountAggregateOutputType = {
     id: number
     title: number
     artistId: number
+    imgageURL: number
+    imageBase64: number
     _all: number
   }
 
@@ -4205,18 +4211,24 @@ export namespace Prisma {
     id?: true
     title?: true
     artistId?: true
+    imgageURL?: true
+    imageBase64?: true
   }
 
   export type AlbumMaxAggregateInputType = {
     id?: true
     title?: true
     artistId?: true
+    imgageURL?: true
+    imageBase64?: true
   }
 
   export type AlbumCountAggregateInputType = {
     id?: true
     title?: true
     artistId?: true
+    imgageURL?: true
+    imageBase64?: true
     _all?: true
   }
 
@@ -4296,6 +4308,8 @@ export namespace Prisma {
     id: string
     title: string
     artistId: string
+    imgageURL: string | null
+    imageBase64: string | null
     _count: AlbumCountAggregateOutputType | null
     _min: AlbumMinAggregateOutputType | null
     _max: AlbumMaxAggregateOutputType | null
@@ -4319,6 +4333,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     artistId?: boolean
+    imgageURL?: boolean
+    imageBase64?: boolean
     artist?: boolean | ArtistDefaultArgs<ExtArgs>
     songs?: boolean | Album$songsArgs<ExtArgs>
     _count?: boolean | AlbumCountOutputTypeDefaultArgs<ExtArgs>
@@ -4330,9 +4346,11 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     artistId?: boolean
+    imgageURL?: boolean
+    imageBase64?: boolean
   }
 
-  export type AlbumOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "artistId", ExtArgs["result"]["album"]>
+  export type AlbumOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "artistId" | "imgageURL" | "imageBase64", ExtArgs["result"]["album"]>
   export type AlbumInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     artist?: boolean | ArtistDefaultArgs<ExtArgs>
     songs?: boolean | Album$songsArgs<ExtArgs>
@@ -4349,6 +4367,8 @@ export namespace Prisma {
       id: string
       title: string
       artistId: string
+      imgageURL: string | null
+      imageBase64: string | null
     }, ExtArgs["result"]["album"]>
     composites: {}
   }
@@ -4746,6 +4766,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Album", 'String'>
     readonly title: FieldRef<"Album", 'String'>
     readonly artistId: FieldRef<"Album", 'String'>
+    readonly imgageURL: FieldRef<"Album", 'String'>
+    readonly imageBase64: FieldRef<"Album", 'String'>
   }
     
 
@@ -6211,7 +6233,9 @@ export namespace Prisma {
   export const AlbumScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    artistId: 'artistId'
+    artistId: 'artistId',
+    imgageURL: 'imgageURL',
+    imageBase64: 'imageBase64'
   };
 
   export type AlbumScalarFieldEnum = (typeof AlbumScalarFieldEnum)[keyof typeof AlbumScalarFieldEnum]
@@ -6424,16 +6448,16 @@ export namespace Prisma {
 
   export type ArtistWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
     AND?: ArtistWhereInput | ArtistWhereInput[]
     OR?: ArtistWhereInput[]
     NOT?: ArtistWhereInput | ArtistWhereInput[]
-    name?: StringFilter<"Artist"> | string
     genre?: StringFilter<"Artist"> | string
     imageURL?: StringNullableFilter<"Artist"> | string | null
     imageBase64?: StringNullableFilter<"Artist"> | string | null
     Songs?: SongListRelationFilter
     Albuns?: AlbumListRelationFilter
-  }, "id">
+  }, "id" | "name">
 
   export type ArtistOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6464,6 +6488,8 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
+    imgageURL?: StringNullableFilter<"Album"> | string | null
+    imageBase64?: StringNullableFilter<"Album"> | string | null
     artist?: XOR<ArtistScalarRelationFilter, ArtistWhereInput>
     songs?: SongListRelationFilter
   }
@@ -6472,6 +6498,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
+    imgageURL?: SortOrder
+    imageBase64?: SortOrder
     artist?: ArtistOrderByWithRelationInput
     songs?: SongOrderByRelationAggregateInput
   }
@@ -6483,6 +6511,8 @@ export namespace Prisma {
     NOT?: AlbumWhereInput | AlbumWhereInput[]
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
+    imgageURL?: StringNullableFilter<"Album"> | string | null
+    imageBase64?: StringNullableFilter<"Album"> | string | null
     artist?: XOR<ArtistScalarRelationFilter, ArtistWhereInput>
     songs?: SongListRelationFilter
   }, "id">
@@ -6491,6 +6521,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
+    imgageURL?: SortOrder
+    imageBase64?: SortOrder
     _count?: AlbumCountOrderByAggregateInput
     _max?: AlbumMaxOrderByAggregateInput
     _min?: AlbumMinOrderByAggregateInput
@@ -6503,6 +6535,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Album"> | string
     title?: StringWithAggregatesFilter<"Album"> | string
     artistId?: StringWithAggregatesFilter<"Album"> | string
+    imgageURL?: StringNullableWithAggregatesFilter<"Album"> | string | null
+    imageBase64?: StringNullableWithAggregatesFilter<"Album"> | string | null
   }
 
   export type SongWhereInput = {
@@ -6735,6 +6769,8 @@ export namespace Prisma {
   export type AlbumCreateInput = {
     id?: string
     title: string
+    imgageURL?: string | null
+    imageBase64?: string | null
     artist: ArtistCreateNestedOneWithoutAlbunsInput
     songs?: SongCreateNestedManyWithoutAlbumInput
   }
@@ -6743,11 +6779,15 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
+    imgageURL?: string | null
+    imageBase64?: string | null
     songs?: SongUncheckedCreateNestedManyWithoutAlbumInput
   }
 
   export type AlbumUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     artist?: ArtistUpdateOneRequiredWithoutAlbunsNestedInput
     songs?: SongUpdateManyWithoutAlbumNestedInput
   }
@@ -6755,6 +6795,8 @@ export namespace Prisma {
   export type AlbumUncheckedUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUncheckedUpdateManyWithoutAlbumNestedInput
   }
 
@@ -6762,15 +6804,21 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
+    imgageURL?: string | null
+    imageBase64?: string | null
   }
 
   export type AlbumUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AlbumUncheckedUpdateManyInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SongCreateInput = {
@@ -7016,18 +7064,24 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
+    imgageURL?: SortOrder
+    imageBase64?: SortOrder
   }
 
   export type AlbumMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
+    imgageURL?: SortOrder
+    imageBase64?: SortOrder
   }
 
   export type AlbumMinOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
+    imgageURL?: SortOrder
+    imageBase64?: SortOrder
   }
 
   export type AlbumNullableScalarRelationFilter = {
@@ -7377,12 +7431,16 @@ export namespace Prisma {
   export type AlbumCreateWithoutArtistInput = {
     id?: string
     title: string
+    imgageURL?: string | null
+    imageBase64?: string | null
     songs?: SongCreateNestedManyWithoutAlbumInput
   }
 
   export type AlbumUncheckedCreateWithoutArtistInput = {
     id?: string
     title: string
+    imgageURL?: string | null
+    imageBase64?: string | null
     songs?: SongUncheckedCreateNestedManyWithoutAlbumInput
   }
 
@@ -7446,6 +7504,8 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
+    imgageURL?: StringNullableFilter<"Album"> | string | null
+    imageBase64?: StringNullableFilter<"Album"> | string | null
   }
 
   export type ArtistCreateWithoutAlbunsInput = {
@@ -7565,6 +7625,8 @@ export namespace Prisma {
   export type AlbumCreateWithoutSongsInput = {
     id?: string
     title: string
+    imgageURL?: string | null
+    imageBase64?: string | null
     artist: ArtistCreateNestedOneWithoutAlbunsInput
   }
 
@@ -7572,6 +7634,8 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
+    imgageURL?: string | null
+    imageBase64?: string | null
   }
 
   export type AlbumCreateOrConnectWithoutSongsInput = {
@@ -7619,12 +7683,16 @@ export namespace Prisma {
 
   export type AlbumUpdateWithoutSongsInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     artist?: ArtistUpdateOneRequiredWithoutAlbunsNestedInput
   }
 
   export type AlbumUncheckedUpdateWithoutSongsInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SongCreateManyArtistInput = {
@@ -7638,6 +7706,8 @@ export namespace Prisma {
   export type AlbumCreateManyArtistInput = {
     id?: string
     title: string
+    imgageURL?: string | null
+    imageBase64?: string | null
   }
 
   export type SongUpdateWithoutArtistInput = {
@@ -7663,16 +7733,22 @@ export namespace Prisma {
 
   export type AlbumUpdateWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUpdateManyWithoutAlbumNestedInput
   }
 
   export type AlbumUncheckedUpdateWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUncheckedUpdateManyWithoutAlbumNestedInput
   }
 
   export type AlbumUncheckedUpdateManyWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
+    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SongCreateManyAlbumInput = {

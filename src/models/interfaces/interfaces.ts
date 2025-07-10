@@ -22,6 +22,33 @@ export interface JWTDecoded {
   exp?: number; // expiration time
 } 
 
+export interface Artist{
+  id: String;
+  name: String;
+  genre: String;
+  imageURL?: String;
+  imageBase64?: String;
+  Songs: Song[];
+  Albuns: Album[];
+}
+
+interface Song {
+  id: String;
+  title: String;
+  duration: String;
+  imageURL?: String;
+  imageBase64?: String;
+}
+
+interface Album {
+  id: String;
+  title: String;
+  releaseDate: String;
+  imageURL?: String;
+  imageBase64?: String;
+  Songs: Song[];
+}
+
 enum Role {
   admin = "admin",
   user = "user",
