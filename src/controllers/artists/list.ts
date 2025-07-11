@@ -1,0 +1,1 @@
+export const ListArtists = async (req: Request)

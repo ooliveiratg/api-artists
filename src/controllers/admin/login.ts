@@ -34,7 +34,7 @@ if (!JWT_SECRET) {
        return res.status(400).json({ message: "Senha incorreta" });
     }
 
-    const token = jwt.sign({id: adminDB?.id, name: adminDB?.name,role :adminDB.role}, JWT_SECRET, {expiresIn: '1h'});
+    const token = jwt.sign({id: adminDB?.id, name: adminDB?.name,role :adminDB.role}, JWT_SECRET, {expiresIn: '7d'});
     return res.status(200).send(token)
   } catch (error) {
     console.error(`Erro ao fazer login: ${error}`);

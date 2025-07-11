@@ -33,16 +33,6 @@ export const CreateArtist = async (req: Request, res: Response) => {
                 genre: artist.genre,
                 imageURL: artist.imageURL,
                 imageBase64: artist.imageBase64,
-                Songs: songData ? {
-                    create: songData.map(song => {
-                        return {
-                            title: song.title,
-                            
-                            imageURL: song.imageURL,
-                            imageBase64: song.imageBase64
-                        }
-                    })
-                } : {}
                 
             },
         });
