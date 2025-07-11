@@ -23,29 +23,30 @@ export interface JWTDecoded {
 } 
 
 export interface Artist{
-  id: String;
-  name: String;
-  genre: String;
-  imageURL?: String;
-  imageBase64?: String;
+  id: string;
+  name: string;
+  genre: string;
+  imageURL?: string;
+  imageBase64?: string;
   Songs: Song[];
   Albuns: Album[];
 }
 
-interface Song {
-  id: String;
-  title: String;
-  duration: String;
-  imageURL?: String;
-  imageBase64?: String;
+export interface Song {
+  id: string;
+  title: string;
+  artistId: string;
+  duration: string;
+  imageURL?: string;
+  imageBase64?: string;
 }
 
-interface Album {
-  id: String;
-  title: String;
-  releaseDate: String;
-  imageURL?: String;
-  imageBase64?: String;
+export interface Album {
+  id: string;
+  title: string;
+  releaseDate: string;
+  imageURL?: string;
+  imageBase64?: string;
   Songs: Song[];
 }
 

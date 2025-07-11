@@ -61,6 +61,7 @@ model Song {
   artistId    String  @db.ObjectId
   artist      Artist  @relation(fields: [artistId], references: [id])
   imageURL    String?
+  duration    String
   imageBase64 String?
   albumId     String? @db.ObjectId
   album       Album?  @relation(fields: [albumId], references: [id])

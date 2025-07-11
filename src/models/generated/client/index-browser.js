@@ -150,6 +150,7 @@ exports.Prisma.SongScalarFieldEnum = {
   title: 'title',
   artistId: 'artistId',
   imageURL: 'imageURL',
+  duration: 'duration',
   imageBase64: 'imageBase64',
   albumId: 'albumId'
 };

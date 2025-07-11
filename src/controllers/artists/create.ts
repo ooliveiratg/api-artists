@@ -1,10 +1,13 @@
 import {Request, Response} from 'express'
-import { Artist, PrismaClient } from '../../models/generated/client/index.js';
+import { PrismaClient } from '../../models/generated/client/index.js';
+import { Artist } from '../../models/interfaces/interfaces.js';
+import { create } from 'domain';
 const prisma = new PrismaClient();
 
 export const CreateArtist = async (req: Request, res: Response) => {
     try{
         const artist:Artist = req.body;
+        const songData= artist.Songs
         if(!artist.name || !artist.genre || (!artist.imageURL && !artist.imageBase64)){
             return res.status(400).json({ message: "Todos os campos são obrigatórios" });
         }
@@ -15,12 +18,32 @@ export const CreateArtist = async (req: Request, res: Response) => {
         if(existingArtist){
             return res.status(400).json({ message: "Artista já existe" });
         }
+
+        if(songData && songData.length > 0){
+            songData.map((song) => {
+                if(!song.title  || (!song.imageURL && !song.imageBase64)){
+                    return res.status(400).json({ message: "Todos os campos da música são obrigatórios" });
+                }
+            })
+        }
+        
         const newArtist = await prisma.artist.create({
             data: {
                 name: artist.name,
                 genre: artist.genre,
                 imageURL: artist.imageURL,
-                imageBase64: artist.imageBase64
+                imageBase64: artist.imageBase64,
+                Songs: songData ? {
+                    create: songData.map(song => {
+                        return {
+                            title: song.title,
+                            
+                            imageURL: song.imageURL,
+                            imageBase64: song.imageBase64
+                        }
+                    })
+                } : {}
+                
             },
         });
 
