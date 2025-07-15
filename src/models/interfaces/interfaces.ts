@@ -47,6 +47,7 @@ export interface Album {
   releaseDate: string;
   imageURL?: string;
   imageBase64?: string;
+  artistId: string;
   Songs: Song[];
 }
 

@@ -4185,7 +4185,8 @@ export namespace Prisma {
     id: string | null
     title: string | null
     artistId: string | null
-    imgageURL: string | null
+    realaseDate: Date | null
+    imageURL: string | null
     imageBase64: string | null
   }
 
@@ -4193,7 +4194,8 @@ export namespace Prisma {
     id: string | null
     title: string | null
     artistId: string | null
-    imgageURL: string | null
+    realaseDate: Date | null
+    imageURL: string | null
     imageBase64: string | null
   }
 
@@ -4201,7 +4203,8 @@ export namespace Prisma {
     id: number
     title: number
     artistId: number
-    imgageURL: number
+    realaseDate: number
+    imageURL: number
     imageBase64: number
     _all: number
   }
@@ -4211,7 +4214,8 @@ export namespace Prisma {
     id?: true
     title?: true
     artistId?: true
-    imgageURL?: true
+    realaseDate?: true
+    imageURL?: true
     imageBase64?: true
   }
 
@@ -4219,7 +4223,8 @@ export namespace Prisma {
     id?: true
     title?: true
     artistId?: true
-    imgageURL?: true
+    realaseDate?: true
+    imageURL?: true
     imageBase64?: true
   }
 
@@ -4227,7 +4232,8 @@ export namespace Prisma {
     id?: true
     title?: true
     artistId?: true
-    imgageURL?: true
+    realaseDate?: true
+    imageURL?: true
     imageBase64?: true
     _all?: true
   }
@@ -4308,7 +4314,8 @@ export namespace Prisma {
     id: string
     title: string
     artistId: string
-    imgageURL: string | null
+    realaseDate: Date
+    imageURL: string | null
     imageBase64: string | null
     _count: AlbumCountAggregateOutputType | null
     _min: AlbumMinAggregateOutputType | null
@@ -4333,7 +4340,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     artistId?: boolean
-    imgageURL?: boolean
+    realaseDate?: boolean
+    imageURL?: boolean
     imageBase64?: boolean
     artist?: boolean | ArtistDefaultArgs<ExtArgs>
     songs?: boolean | Album$songsArgs<ExtArgs>
@@ -4346,11 +4354,12 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     artistId?: boolean
-    imgageURL?: boolean
+    realaseDate?: boolean
+    imageURL?: boolean
     imageBase64?: boolean
   }
 
-  export type AlbumOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "artistId" | "imgageURL" | "imageBase64", ExtArgs["result"]["album"]>
+  export type AlbumOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "artistId" | "realaseDate" | "imageURL" | "imageBase64", ExtArgs["result"]["album"]>
   export type AlbumInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     artist?: boolean | ArtistDefaultArgs<ExtArgs>
     songs?: boolean | Album$songsArgs<ExtArgs>
@@ -4367,7 +4376,8 @@ export namespace Prisma {
       id: string
       title: string
       artistId: string
-      imgageURL: string | null
+      realaseDate: Date
+      imageURL: string | null
       imageBase64: string | null
     }, ExtArgs["result"]["album"]>
     composites: {}
@@ -4766,7 +4776,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Album", 'String'>
     readonly title: FieldRef<"Album", 'String'>
     readonly artistId: FieldRef<"Album", 'String'>
-    readonly imgageURL: FieldRef<"Album", 'String'>
+    readonly realaseDate: FieldRef<"Album", 'DateTime'>
+    readonly imageURL: FieldRef<"Album", 'String'>
     readonly imageBase64: FieldRef<"Album", 'String'>
   }
     
@@ -6245,7 +6256,8 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     artistId: 'artistId',
-    imgageURL: 'imgageURL',
+    realaseDate: 'realaseDate',
+    imageURL: 'imageURL',
     imageBase64: 'imageBase64'
   };
 
@@ -6311,6 +6323,20 @@ export namespace Prisma {
    * Reference to a field of type 'Role[]'
    */
   export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -6500,7 +6526,8 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
-    imgageURL?: StringNullableFilter<"Album"> | string | null
+    realaseDate?: DateTimeFilter<"Album"> | Date | string
+    imageURL?: StringNullableFilter<"Album"> | string | null
     imageBase64?: StringNullableFilter<"Album"> | string | null
     artist?: XOR<ArtistScalarRelationFilter, ArtistWhereInput>
     songs?: SongListRelationFilter
@@ -6510,7 +6537,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
-    imgageURL?: SortOrder
+    realaseDate?: SortOrder
+    imageURL?: SortOrder
     imageBase64?: SortOrder
     artist?: ArtistOrderByWithRelationInput
     songs?: SongOrderByRelationAggregateInput
@@ -6523,7 +6551,8 @@ export namespace Prisma {
     NOT?: AlbumWhereInput | AlbumWhereInput[]
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
-    imgageURL?: StringNullableFilter<"Album"> | string | null
+    realaseDate?: DateTimeFilter<"Album"> | Date | string
+    imageURL?: StringNullableFilter<"Album"> | string | null
     imageBase64?: StringNullableFilter<"Album"> | string | null
     artist?: XOR<ArtistScalarRelationFilter, ArtistWhereInput>
     songs?: SongListRelationFilter
@@ -6533,7 +6562,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
-    imgageURL?: SortOrder
+    realaseDate?: SortOrder
+    imageURL?: SortOrder
     imageBase64?: SortOrder
     _count?: AlbumCountOrderByAggregateInput
     _max?: AlbumMaxOrderByAggregateInput
@@ -6547,7 +6577,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Album"> | string
     title?: StringWithAggregatesFilter<"Album"> | string
     artistId?: StringWithAggregatesFilter<"Album"> | string
-    imgageURL?: StringNullableWithAggregatesFilter<"Album"> | string | null
+    realaseDate?: DateTimeWithAggregatesFilter<"Album"> | Date | string
+    imageURL?: StringNullableWithAggregatesFilter<"Album"> | string | null
     imageBase64?: StringNullableWithAggregatesFilter<"Album"> | string | null
   }
 
@@ -6786,7 +6817,8 @@ export namespace Prisma {
   export type AlbumCreateInput = {
     id?: string
     title: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
     artist: ArtistCreateNestedOneWithoutAlbunsInput
     songs?: SongCreateNestedManyWithoutAlbumInput
@@ -6796,14 +6828,16 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
     songs?: SongUncheckedCreateNestedManyWithoutAlbumInput
   }
 
   export type AlbumUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     artist?: ArtistUpdateOneRequiredWithoutAlbunsNestedInput
     songs?: SongUpdateManyWithoutAlbumNestedInput
@@ -6812,7 +6846,8 @@ export namespace Prisma {
   export type AlbumUncheckedUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUncheckedUpdateManyWithoutAlbumNestedInput
   }
@@ -6821,20 +6856,23 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
   }
 
   export type AlbumUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AlbumUncheckedUpdateManyInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -7079,6 +7117,17 @@ export namespace Prisma {
     imageBase64?: SortOrder
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type ArtistScalarRelationFilter = {
     is?: ArtistWhereInput
     isNot?: ArtistWhereInput
@@ -7088,7 +7137,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
-    imgageURL?: SortOrder
+    realaseDate?: SortOrder
+    imageURL?: SortOrder
     imageBase64?: SortOrder
   }
 
@@ -7096,7 +7146,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
-    imgageURL?: SortOrder
+    realaseDate?: SortOrder
+    imageURL?: SortOrder
     imageBase64?: SortOrder
   }
 
@@ -7104,8 +7155,23 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     artistId?: SortOrder
-    imgageURL?: SortOrder
+    realaseDate?: SortOrder
+    imageURL?: SortOrder
     imageBase64?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type AlbumNullableScalarRelationFilter = {
@@ -7258,6 +7324,10 @@ export namespace Prisma {
     connectOrCreate?: SongCreateOrConnectWithoutAlbumInput | SongCreateOrConnectWithoutAlbumInput[]
     createMany?: SongCreateManyAlbumInputEnvelope
     connect?: SongWhereUniqueInput | SongWhereUniqueInput[]
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type ArtistUpdateOneRequiredWithoutAlbunsNestedInput = {
@@ -7430,6 +7500,31 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type SongCreateWithoutArtistInput = {
     id?: string
     title: string
@@ -7460,7 +7555,8 @@ export namespace Prisma {
   export type AlbumCreateWithoutArtistInput = {
     id?: string
     title: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
     songs?: SongCreateNestedManyWithoutAlbumInput
   }
@@ -7468,7 +7564,8 @@ export namespace Prisma {
   export type AlbumUncheckedCreateWithoutArtistInput = {
     id?: string
     title: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
     songs?: SongUncheckedCreateNestedManyWithoutAlbumInput
   }
@@ -7534,7 +7631,8 @@ export namespace Prisma {
     id?: StringFilter<"Album"> | string
     title?: StringFilter<"Album"> | string
     artistId?: StringFilter<"Album"> | string
-    imgageURL?: StringNullableFilter<"Album"> | string | null
+    realaseDate?: DateTimeFilter<"Album"> | Date | string
+    imageURL?: StringNullableFilter<"Album"> | string | null
     imageBase64?: StringNullableFilter<"Album"> | string | null
   }
 
@@ -7657,7 +7755,8 @@ export namespace Prisma {
   export type AlbumCreateWithoutSongsInput = {
     id?: string
     title: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
     artist: ArtistCreateNestedOneWithoutAlbunsInput
   }
@@ -7666,7 +7765,8 @@ export namespace Prisma {
     id?: string
     title: string
     artistId: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
   }
 
@@ -7715,7 +7815,8 @@ export namespace Prisma {
 
   export type AlbumUpdateWithoutSongsInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     artist?: ArtistUpdateOneRequiredWithoutAlbunsNestedInput
   }
@@ -7723,7 +7824,8 @@ export namespace Prisma {
   export type AlbumUncheckedUpdateWithoutSongsInput = {
     title?: StringFieldUpdateOperationsInput | string
     artistId?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -7739,7 +7841,8 @@ export namespace Prisma {
   export type AlbumCreateManyArtistInput = {
     id?: string
     title: string
-    imgageURL?: string | null
+    realaseDate?: Date | string
+    imageURL?: string | null
     imageBase64?: string | null
   }
 
@@ -7769,21 +7872,24 @@ export namespace Prisma {
 
   export type AlbumUpdateWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUpdateManyWithoutAlbumNestedInput
   }
 
   export type AlbumUncheckedUpdateWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
     songs?: SongUncheckedUpdateManyWithoutAlbumNestedInput
   }
 
   export type AlbumUncheckedUpdateManyWithoutArtistInput = {
     title?: StringFieldUpdateOperationsInput | string
-    imgageURL?: NullableStringFieldUpdateOperationsInput | string | null
+    realaseDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    imageURL?: NullableStringFieldUpdateOperationsInput | string | null
     imageBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

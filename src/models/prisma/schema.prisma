@@ -51,7 +51,8 @@ model Album {
   artistId String  @db.ObjectId
   artist Artist @relation(fields: [artistId], references: [id]) 
   songs Song[]
-  imgageURL String?
+  realaseDate DateTime @default(now())
+  imageURL String?
   imageBase64 String?
 }
 

@@ -46,12 +46,13 @@ model Artist {
 }
 
 model Album {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  artistId    String  @db.ObjectId
-  artist      Artist  @relation(fields: [artistId], references: [id])
+  artistId    String   @db.ObjectId
+  artist      Artist   @relation(fields: [artistId], references: [id])
   songs       Song[]
-  imgageURL   String?
+  realaseDate DateTime @default(now())
+  imageURL    String?
   imageBase64 String?
 }
 
