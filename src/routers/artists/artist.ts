@@ -6,6 +6,7 @@ import { ListArtists } from "../../controllers/artists/list";
 import { DeleteArtist } from "../../controllers/artists/delete";
 import { DeleteSong } from "../../controllers/songs/delete";
 import { UpdateArtist } from "../../controllers/artists/update";
+import { UpdateSong } from "../../controllers/songs/update";
 
 const router = express.Router();
 
@@ -16,4 +17,5 @@ router.get("/songs/all",ListSongs);
 router.delete("/delete/:id",DeleteArtist);
 router.delete("/delete/song/:id", DeleteSong);
 router.put("/update/:id",UpdateArtist)
+router.put("/update/song/:id", UpdateSong);
 export default router;
