@@ -4,7 +4,7 @@ import { Album } from "../../models/interfaces/interfaces.js";
 
 const prisma = new PrismaClient();
 
-export const createAlbum = async (req: Request, res: Response) => {
+export const CreateAlbum = async (req: Request, res: Response) => {
  try{
     const album:Album = req.body
 
