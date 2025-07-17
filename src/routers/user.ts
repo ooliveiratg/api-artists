@@ -4,6 +4,7 @@ import { RegisterUser } from "../controllers/user/register.js";
 import { LoginUser } from "../controllers/user/login.js";
 import { ListingUsers } from "../controllers/user/listing.js";
 import { DeleteUser } from "../controllers/user/delete.js";
+import { authMiddleware } from "../middlewares/auth.js";
 
 
 
@@ -13,7 +14,7 @@ const router = express.Router();
   router.post("/register", RegisterUser) 
   router.get('/all',ListingUsers)
   router.post("/login", LoginUser)
-  router.delete("/delete/:id", DeleteUser)
+  router.delete("/delete/:id",authMiddleware, DeleteUser)
     
 export default router
 

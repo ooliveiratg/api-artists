@@ -34,7 +34,7 @@ export const RegisterUser = async (req:Request, res:Response) => {
         },
       });
 
-      return res.status(200).json("Usuário criado com sucesso");
+      return res.status(201).json("Usuário criado com sucesso");
     } else {
       return res.status(400).json({ message: "Email inválido ou senha muito curta" });
     }

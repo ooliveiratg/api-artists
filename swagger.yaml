@@ -5,20 +5,134 @@ info:
   version: 1.0.0
 
 servers:
-   - url: "https://localhost:3000"
+  - url: "https://localhost:3000"
+
+tags:
+  - name: User
+    description: Operações relacionadas a usuários
+
+  - name: Artistas
+    description: Operações relacionadas a artistas
+
+  - name: Songs
+    description: Operações relacionadas a músicas
+
+  - name: Albums
+    description: Operações relacionadas a álbuns
+
+  - name: Admin
+    description: Operações administrativas
+
 paths:
+  # rota
   /user/register:
+    # metodo
     post:
-      summary: "Cadastro de usuário" 
+      # titulo
+      summary: "Cadastro de usuário"
+      # descricao
       description: "Cria um novo usuário no sistema"
       tags:
-        - user
+        - User
+
+        # corpo da requisição
       requestBody:
+        # tipo de conteudo
         content:
           application/json:
+            # esquema de dados
             schema:
-              $ref: '#/components/schemas/User'
-            
+              $ref: "#/components/schemas/User"
+              # exemplo de dados
+            examples:
+              User:
+                summary: "Exemplo de usuário"
+                value:
+                  name: "João Silva"
+                  email: "joao.silva@example.com"
+                  password: "senha123"
+      # resposta
+      responses:
+        "400":
+          description: "Erro ao criar usuário"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+        "201":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+
+  /user/all:
+    get:
+      summary: "Listar todos os usuários"
+      description: "Retorna uma lista de todos os usuários cadastrados"
+      tags:
+        - User
+
+      # get não usa requestBody, mas sim parâmetros de consulta
+      responses:
+        "200":
+          description: "Lista de usuários"
+          content:
+           application/json:
+            schema:
+            # é do tipo array pois me retorna uma lista de usuários
+              type: array
+              items:
+              $ref: "#/components/schemas/User"
+
+            example:
+              User:
+
+                value: 
+                  - id: 1
+                    name: "João Silva"
+                    email: "joao.silva@example.com"
+                    password: "hashedPassword"
+
+                  - id: 2
+                    name: "Roberto Souza"
+                    email: "roberto.souza@example.com"
+                    password: "hashedPassword"
+
+                  - id: 3
+                    name: "Maria Oliveira"
+                    email: "maria.oliveira@example.com"
+                    password: "hashedPassword"
+        '500':
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"             
+
+  /user/delete/{id}
+    
+      
 # aqui eu crio componentes que serão reutilizados
 components:
   schemas:
@@ -27,7 +141,11 @@ components:
       properties:
         email:
           type: string
-          format: email
+          description: "Email do usuário"
+
         password:
           type: string
-          format: password
+          description: "Senha do usuário"
+        name:
+          type: string
+          description: "Nome do usuário"
