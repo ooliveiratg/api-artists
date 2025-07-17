@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: API Artistas
+  description: API para gerenciar informações de artistas
+  version: 1.0.0
+
+servers:
+   - url: "https://localhost:3000"
+paths:
+  /user/register:
+    post:
+      summary: "Cadastro de usuário" 
+      description: "Cria um novo usuário no sistema"
+      tags:
+        - user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            
+# aqui eu crio componentes que serão reutilizados
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
