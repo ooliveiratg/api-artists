@@ -5,7 +5,7 @@ import ArtistRouters from './routers/artists/artist.js';
 import { authMiddleware } from './middlewares/auth.js';
 import YAML from 'yamljs';
 import swaggerUi from 'swagger-ui-express';
-const swaggerDocument = YAML.load('./swagger.yaml');
+import {Request, Response, NextFunction} from 'express'
 
 const server = express();
 
@@ -17,7 +17,11 @@ server.use('/user', UserRouters);
 server.use('/admin', AdminRouters);
 server.use("/artist",authMiddleware, ArtistRouters);
 
-server.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//desta maneira ele detecta as mudanças no arquivo swagger.yaml
+server.use('/api-docs',swaggerUi.serve,(req: Request, res: Response, next: NextFunction) => {
+    const swaggerDocument = YAML.load('./swagger.yaml');
+    swaggerUi.setup(swaggerDocument)(req, res, next);
+});
 
 server.listen(port, () => {
     console.log(`está funcionando na porta: ${port}`)
