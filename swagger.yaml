@@ -276,8 +276,57 @@ paths:
                 example:
                   message: "Erro interno do servidor"
 
+  /admin/register:
+    post:
+      tags:
+        - Admin
+      summary: "Cadastro de administrador"
+      description: "Cria um novo administrador no sistema"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRegister"
+      responses:
+        "200":
+          description: "Administrador criado com sucesso"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserRegister"
+              examples:
+                Admin:
+                  summary: "Exemplo de administrador criado"
+                  value:
+                    name: "Admin"
+                    email: "admin@example.com"
+                    password: "admin123"
 
-      
+        "400":
+          description: "Email inválido ou senha muito curta"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Email inválido ou senha muito curta"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"                    
 
 # aqui eu crio componentes que serão reutilizados
 components:
