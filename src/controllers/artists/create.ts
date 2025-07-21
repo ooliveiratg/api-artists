@@ -18,14 +18,6 @@ export const CreateArtist = async (req: Request, res: Response) => {
         if(existingArtist){
             return res.status(400).json({ message: "Artista já existe" });
         }
-
-        if(songData && songData.length > 0){
-            songData.map((song) => {
-                if(!song.title  || (!song.imageURL && !song.imageBase64)){
-                    return res.status(400).json({ message: "Todos os campos da música são obrigatórios" });
-                }
-            })
-        }
         
         const newArtist = await prisma.artist.create({
             data: {
@@ -33,6 +25,7 @@ export const CreateArtist = async (req: Request, res: Response) => {
                 genre: artist.genre,
                 imageURL: artist.imageURL,
                 imageBase64: artist.imageBase64,
+                biography: artist.biography,
                 
             },
         });

@@ -30,6 +30,7 @@ export interface Artist{
   imageBase64?: string;
   Songs: Song[];
   Albuns: Album[];
+  biography?: string;
 }
 
 export interface Song {

@@ -326,7 +326,145 @@ paths:
                     type: string
                     description: "Mensagem de erro"
                 example:
-                  message: "Erro interno do servidor"                    
+                  message: "Erro interno do servidor"  
+
+
+  /admin/login:
+    post:
+      tags:
+        - Admin
+      summary: "Login de administrador"
+      description: "Realiza o login de um administrador no sistema"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLogin"
+
+      responses:
+        "200":
+          description: "Login bem-sucedido"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: "Token de autenticação do administrador"
+              example:
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+        "400":
+          description: "Email ou senha inválidos"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Email ou senha inválidos"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"     
+
+        "404":
+          description: "Administrador não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Administrador não encontrado" 
+
+  /artist/create:
+    post:
+      tags:
+        - Artistas
+      summary: "Cadastro de artista"
+      description: "Cria um novo artista no sistema"
+      security:
+        - bearerAuth: []
+      
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArtistCreate"
+      responses:
+        "200":
+          description: "Artista criado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: "ID do artista"
+                  name:
+                    type: string
+                    description: "Nome do artista"
+                  genre:
+                    type: string
+                    description: "Gênero musical do artista"
+                  bio:
+                    type: string
+                    description: "Biografia do artista"
+                  imageURL:
+                    type: string
+                    description: "URL da imagem do artista"
+              example:
+                id: 1
+                name: "Artista Exemplo"
+                genre: "Pop"
+                bio: "Biografia do artista exemplo."
+                imageURL: "https://example.com/image.jpg"
+
+        "400":
+          description: "Erro ao criar artista"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Todos os campos são obrigatórios"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+    
+                                      
 
 # aqui eu crio componentes que serão reutilizados
 components:
@@ -355,6 +493,38 @@ components:
         password:
           type: string
           description: "Senha do usuário"
+      example :
+            email: "admin@example.com"
+            password: "admin123"
+
+    ArtistCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Nome do artista"
+        genre:
+          type: string
+          description: "Gênero musical do artista"
+        bio:
+          type: string
+          description: "Biografia do artista"
+        imageURL:
+          type: string
+          description: "URL da imagem do artista"
+        imageBase64:
+          type: string
+          description: "Imagem do artista em base64 (opcional)"
+      required:
+        - name
+        - genre
+        - bio 
+      example:
+        name: "Artista Exemplo"
+        genre: "Pop"
+        bio: "Biografia do artista exemplo."
+        imageURL: "https://example.com/image.jpg"
+        imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."       
   # aqui eu defino os esquemas de segurança
   securitySchemes:
       bearerAuth:

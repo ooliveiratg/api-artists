@@ -30,8 +30,10 @@ if (!JWT_SECRET) {
       
     const isPasswordVAlid = await bcrypt.compare(admin.password, adminDB!.password)
 
-    if (!isPasswordVAlid) {
-       return res.status(400).json({ message: "Senha incorreta" });
+    const isEmailValid = adminDB.email === admin.email;
+
+    if (!isPasswordVAlid || !isEmailValid) {
+       return res.status(400).json({ message: "Email ou senha incorretos" });
     }
 
     const token = jwt.sign({id: adminDB?.id, name: adminDB?.name,role :adminDB.role}, JWT_SECRET, {expiresIn: '7d'});

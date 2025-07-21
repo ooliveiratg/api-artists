@@ -43,6 +43,7 @@ model Artist{
   imageBase64 String?
   Songs Song[]  
   Albuns Album[]
+  biography String?
 }
 
 model Album {

@@ -134,7 +134,8 @@ exports.Prisma.ArtistScalarFieldEnum = {
   name: 'name',
   genre: 'genre',
   imageURL: 'imageURL',
-  imageBase64: 'imageBase64'
+  imageBase64: 'imageBase64',
+  biography: 'biography'
 };
 
 exports.Prisma.AlbumScalarFieldEnum = {
