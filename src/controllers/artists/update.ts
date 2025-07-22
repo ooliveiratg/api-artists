@@ -14,6 +14,10 @@ export const UpdateArtist = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Artista não encontrado" });
     }
 
+    if(!id){
+      return res.status(400).json({ message: "ID é obrigatório" });
+    }
+
     const updatedArtist = await prisma.artist.update({
         where:{id},
         data: {

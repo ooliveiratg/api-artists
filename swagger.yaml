@@ -221,8 +221,8 @@ paths:
           description: "ID do usuário a ser deletado"
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+            
       security:
         - bearerAuth: []
       responses:
@@ -463,7 +463,187 @@ paths:
                     description: "Mensagem de erro"
                 example:
                   message: "Erro interno do servidor"
-    
+
+  /artist/all:
+    get:
+      tags:
+        - Artistas
+      summary: "Listar todos os artistas"
+      description: "Retorna uma lista de todos os artistas cadastrados"
+      responses:
+        "200":
+          description: "Lista de artistas"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ArtistCreate"
+              example:
+                - id: 1
+                  name: "Artista Exemplo"
+                  genre: "Pop"
+                  bio: "Biografia do artista exemplo."
+                  imageURL: "https://example.com/image.jpg"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"  
+
+  /artist/update/{id}:
+    put:
+      tags:
+        - Artistas
+      summary: "Atualizar artista"
+      description: "Atualiza as informações de um artista existente"
+      parameters:
+        - name: id
+          in: path
+          description: "ID do artista a ser atualizado"
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArtistCreate"
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: "Artista atualizado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de sucesso"
+                example:
+                  message: "Artista atualizado com sucesso"
+
+        "404":
+          description: "Artista não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Artista não encontrado"
+
+        "400":
+          description: "ID é obrigatório"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "ID é obrigatório"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+                
+
+
+  /artist/delete/{id}:
+    delete:
+      tags:
+        - Artistas
+      summary: "Deletar artista"
+      description: "Deleta um artista do sistema"
+      parameters:
+        - name: id
+          in: path
+          description: "ID do artista a ser deletado"
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: "Artista deletado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Deletado com sucesso"
+                example:
+                  message: "Artista deletado com sucesso"
+        "404":
+          description: "Artista não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Artista não encontrado"
+
+        "400":
+          description: "ID inválido" 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "ID inválido"
+                example:
+                  message: "ID inválido"
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+
+
                                       
 
 # aqui eu crio componentes que serão reutilizados
@@ -524,7 +704,9 @@ components:
         genre: "Pop"
         bio: "Biografia do artista exemplo."
         imageURL: "https://example.com/image.jpg"
-        imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."       
+        imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+
+
   # aqui eu defino os esquemas de segurança
   securitySchemes:
       bearerAuth:
