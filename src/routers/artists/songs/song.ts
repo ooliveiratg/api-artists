@@ -7,7 +7,9 @@ import express from "express";
 
 const router = express.Router();
 
-router.post("/create/song",CreateSong);
+router.post("/songs/create",CreateSong);
 router.get("/songs/all",ListSongs);
-router.delete("/delete/song/:id", DeleteSong);
-router.put("/update/song/:id", UpdateSong);
+router.delete("/songs/delete/:id", DeleteSong);
+router.put("/songs/update/:id", UpdateSong);
+
+export default router

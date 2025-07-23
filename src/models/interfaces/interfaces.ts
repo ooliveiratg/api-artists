@@ -38,6 +38,7 @@ export interface Song {
   title: string;
   artistId: string;
   duration: string;
+  artistName: string;
   imageURL?: string;
   imageBase64?: string;
 }

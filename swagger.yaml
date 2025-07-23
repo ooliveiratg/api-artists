@@ -643,7 +643,18 @@ paths:
                 example:
                   message: "Erro interno do servidor"
 
-
+                  
+  /artist/songs/create:
+    post:
+      tags:
+        - Songs
+      summary: "Cria musicas para um artista"
+      description: "Cria uma música para o sistema"
+      requestBody:
+        content:
+          application/json:
+            schemas:
+              $ref:
                                       
 
 # aqui eu crio componentes que serão reutilizados
@@ -705,6 +716,20 @@ components:
         bio: "Biografia do artista exemplo."
         imageURL: "https://example.com/image.jpg"
         imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+
+    SongsCreate:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "titulo da música"
+        duration:
+          type: string
+          description: "tempo de duração das musicas"
+        Artist:
+          type: string
+          description: "nome do artista"
+
 
 
   # aqui eu defino os esquemas de segurança

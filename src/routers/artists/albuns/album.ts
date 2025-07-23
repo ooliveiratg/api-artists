@@ -11,3 +11,6 @@ router.post("/album/create", CreateAlbum);
 router.get("/albuns/all", ListAlbuns); 
 router.put("/album/update/:id", UpdateAlbuns);
 router.delete("/album/delete/:id", DeleteAlbum)
+
+
+export default router
