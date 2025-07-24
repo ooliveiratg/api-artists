@@ -50,6 +50,7 @@ export interface Album {
   imageURL?: string;
   imageBase64?: string;
   artistId: string;
+  artistName: string;
   Songs: Song[];
 }
 

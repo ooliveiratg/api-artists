@@ -50,6 +50,7 @@ model Album {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   artistId String  @db.ObjectId
+  artistName String
   artist Artist @relation(fields: [artistId], references: [id]) 
   songs Song[]
   realaseDate DateTime @default(now())

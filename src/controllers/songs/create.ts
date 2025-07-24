@@ -25,6 +25,7 @@ export const CreateSong = async (req: Request, res: Response) => {
                 artistId: artistID,
                 imageURL: song.imageURL,
                 imageBase64: song.imageBase64
+                
 
             }
         })

@@ -12,8 +12,6 @@ tags:
     description: Operações relacionadas a usuários
 
   - name: artistas
-    security:
-        - bearerAuth: []
     description: Operações relacionadas a artistas
 
   - name: Songs
@@ -94,15 +92,15 @@ paths:
       description: "Retorna uma lista de todos os usuários cadastrados"
       tags:
         - User
+      security:
+        - bearerAuth: []
 
-      # get não usa requestBody, mas sim parâmetros de consulta
       responses:
         "200":
           description: "Lista de usuários"
           content:
            application/json:
             schema:
-            # é do tipo array pois me retorna uma lista de usuários
               type: array
               items:
                 $ref: "#/components/schemas/UserRegister"
@@ -399,7 +397,7 @@ paths:
   /artist/create:
     post:
       tags:
-        - Artistas
+        - artistas
       summary: "Cadastro de artista"
       description: "Cria um novo artista no sistema"
       security:
@@ -469,7 +467,10 @@ paths:
   /artist/all:
     get:
       tags:
-        - Artistas
+        - artistas
+      security:
+         - bearerAuth: []
+        
       summary: "Listar todos os artistas"
       description: "Retorna uma lista de todos os artistas cadastrados"
       responses:
@@ -504,7 +505,7 @@ paths:
   /artist/update/{id}:
     put:
       tags:
-        - Artistas
+        - artistas
       summary: "Atualizar artista"
       description: "Atualiza as informações de um artista existente"
       parameters:
@@ -582,7 +583,7 @@ paths:
   /artist/delete/{id}:
     delete:
       tags:
-        - Artistas
+        - artistas
       summary: "Deletar artista"
       description: "Deleta um artista do sistema"
       parameters:
@@ -733,6 +734,9 @@ paths:
     get:
       tags:
         - Songs
+      security:
+        - bearerAuth: []
+
       summary: "Listar todas as músicas"
       description: "Retorna uma lista de todas as músicas cadastradas"
       responses:
@@ -839,12 +843,13 @@ paths:
                     description: "Mensagem de erro"
                 example:
                   message: "Erro interno do servidor"
+                  
   /artist/songs/delete/{id}:
     delete:
       tags:
         - Songs
       summary: "Deletar música"
-      description: "Remove uma música existente"
+      description: "Deleta uma música do sistema"
       parameters:
         - name: id
           in: path
@@ -852,10 +857,8 @@ paths:
           required: true
           schema:
             type: string
-
       security:
         - bearerAuth: []
-
       responses:
         "200":
           description: "Música deletada com sucesso"
@@ -866,10 +869,9 @@ paths:
                 properties:
                   message:
                     type: string
-                    description: "Mensagem de sucesso"
+                    description: "Deletado com sucesso"
                 example:
                   message: "Música deletada com sucesso"
-
         "404":
           description: "Música não encontrada"
           content:
@@ -882,6 +884,183 @@ paths:
                     description: "Mensagem de erro"
                 example:
                   message: "Música não encontrada"
+
+        "400":
+          description: "ID inválido" 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "ID inválido"
+                example:
+                  message: "ID inválido"
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+
+  /artist/albums/create:
+    post:
+      tags:
+        - Albums
+      summary: "Criar álbum"
+      description: "Cria um novo álbum no sistema"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AlbumCreate"
+      security:
+        - bearerAuth: []
+      responses:
+        "201":
+          description: "Álbum criado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Álbum criado com sucesso"
+                example:
+                  message: "Álbum criado com sucesso"
+        "404":
+          description: "Artista não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Artista não encontrado"          
+        "400":
+          description: "Dados inválidos"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Dados inválidos"
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+  /artist/albums/all:
+    get:
+      tags:
+        - Albums
+      security:
+        - bearerAuth: []
+      
+      summary: "Listar todos os álbuns"
+      description: "Retorna uma lista de todos os álbuns cadastrados"
+      responses:
+        "200":
+          description: "Lista de álbuns"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AlbumCreate"
+              example:
+                - id: 1
+                  title: "Álbum Exemplo"
+                  artistName: "Artista Exemplo"
+                  releaseDate: "2023-10-01T00:00:00Z"
+                  imageURL: "https://example.com/album.jpg"
+                  imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."       
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+
+  /artist/albums/update/{id}:
+    put:
+      tags:
+        - Albums
+      summary: "Atualizar álbum"
+      description: "Atualiza as informações de um álbum existente"
+      parameters:
+        - name: id
+          in: path
+          description: "ID do álbum a ser atualizado"
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AlbumCreate"
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: "Álbum atualizado com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de sucesso"
+                example:
+                  message: "Álbum atualizado com sucesso"
+
+        "404":
+          description: "Álbum não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Álbum não encontrado"
 
         "400":
           description: "ID é obrigatório"
@@ -906,6 +1085,77 @@ paths:
                   message:
                     type: string
                     description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+  /artist/albums/delete/{id}:
+    delete:
+      tags:
+        - Albums
+      summary: "Deletar álbum"
+      description: "Remove um álbum existente"
+      parameters:
+        - name: id
+          in: path
+          description: "ID do álbum a ser removido"
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: "Álbum removido com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de sucesso"
+                example:
+                  message: "Álbum removido com sucesso"
+        "404":
+          description: "Álbum não encontrado"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Álbum não encontrado"
+        "400":
+          description: "ID inválido"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "ID inválido"
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+  
+
+# aqui eu crio componentes que serão reutilizados
+components:
+  schemas:
     UserRegister:
       type: object
       required:
@@ -999,10 +1249,35 @@ paths:
         imageURL: "https://example.com/image.jpg"
         imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
 
-
-
-
-
+    AlbumCreate:
+      type: object
+      required:
+        - title
+        - artistName
+        - releaseDate
+      properties:
+        title:
+          type: string
+          description: "Título do álbum"
+        artistName:
+          type: string
+          description: "Nome do artista"
+        releaseDate:
+          type: string
+          format: date-time
+          description: "Data de lançamento do álbum"
+        imageURL:
+          type: string
+          description: "URL da imagem do álbum"
+        imageBase64:
+          type: string
+          description: "Imagem do álbum em base64 (opcional)"
+      example:
+        title: "Álbum Exemplo"
+        artistName: "Artista Exemplo"
+        releaseDate: "2023-10-01T00:00:00Z"
+        imageURL: "https://example.com/album.jpg"
+        imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
   # aqui eu defino os esquemas de segurança
   securitySchemes:
       bearerAuth:
