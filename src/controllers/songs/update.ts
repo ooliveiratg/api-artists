@@ -5,7 +5,9 @@ import { Song } from "../../models/interfaces/interfaces.js";
 const prisma = new PrismaClient();
 export const UpdateSong = async (req: Request, res: Response) => {
     const id = req.params.id;
-
+    if (!id) {
+        return res.status(400).json({ message: "ID da música é obrigatório" });
+    }
     try{
         const songData:Song = req.body;
         const existingSong = await prisma.song.findUnique({ where: { id } });

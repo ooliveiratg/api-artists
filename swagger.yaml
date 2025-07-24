@@ -11,7 +11,9 @@ tags:
   - name: User
     description: Operações relacionadas a usuários
 
-  - name: Artistas
+  - name: artistas
+    security:
+        - bearerAuth: []
     description: Operações relacionadas a artistas
 
   - name: Songs
@@ -650,18 +652,266 @@ paths:
         - Songs
       summary: "Cria musicas para um artista"
       description: "Cria uma música para o sistema"
+      security:
+        - bearerAuth: []
+      
       requestBody:
         content:
           application/json:
-            schemas:
-              $ref:
-                                      
+            schema:
+              $ref: "#/components/schemas/SongsCreate"
+      responses:
+        "201":
+          description: "Música criada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: "ID da música"
+                  title:
+                    type: string
+                    description: "Título da música"
+                  duration:
+                    type: string
+                    description: "Duração da música"
+                  artistName:
+                    type: string
+                    description: "Nome do artista"
+                  imageURL:
+                    type: string
+                    description: "URL da imagem da música"
+              example:
+                id: 1
+                title: "Música Exemplo"
+                duration: "3:45"
+                artistName: "Artista Exemplo"
+                imageURL: "https://example.com/image.jpg"
 
-# aqui eu crio componentes que serão reutilizados
-components:
-  schemas:
+        "400":
+          description: "Erro ao criar música"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Todos os campos são obrigatórios"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+
+        "404":
+            description: "Artista não encontrado"
+            content:
+              application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: "Mensagem de erro"
+                        example:
+                            message: "Artista não encontrado"
+
+  /artist/songs/all:
+    get:
+      tags:
+        - Songs
+      summary: "Listar todas as músicas"
+      description: "Retorna uma lista de todas as músicas cadastradas"
+      responses:
+        "200":
+          description: "Lista de músicas"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SongsCreate"
+              example:
+                - id: 1
+                  title: "Música Exemplo"
+                  duration: "3:45"
+                  artistName: "Artista Exemplo"
+                  imageURL: "https://example.com/image.jpg"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+
+  /artist/songs/update/{id}:
+    put:
+      tags:
+        - Songs
+      summary: "Atualizar música"
+      description: "Atualiza as informações de uma música existente"
+      parameters:
+        - name: id
+          in: path
+          description: "ID da música a ser atualizada"
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SongsCreate"
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: "Música atualizada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de sucesso"
+                example:
+                  message: "Música atualizada com sucesso"
+
+        "404":
+          description: "Música não encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Música não encontrada"
+
+        "400":
+          description: "ID é obrigatório"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "ID é obrigatório"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Erro interno do servidor"
+  /artist/songs/delete/{id}:
+    delete:
+      tags:
+        - Songs
+      summary: "Deletar música"
+      description: "Remove uma música existente"
+      parameters:
+        - name: id
+          in: path
+          description: "ID da música a ser deletada"
+          required: true
+          schema:
+            type: string
+
+      security:
+        - bearerAuth: []
+
+      responses:
+        "200":
+          description: "Música deletada com sucesso"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de sucesso"
+                example:
+                  message: "Música deletada com sucesso"
+
+        "404":
+          description: "Música não encontrada"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "Música não encontrada"
+
+        "400":
+          description: "ID é obrigatório"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
+                example:
+                  message: "ID é obrigatório"
+
+        "500":
+          description: "Erro interno do servidor"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: "Mensagem de erro"
     UserRegister:
       type: object
+      required:
+        - email
+        - password
+        - name
       properties:
         email:
           type: string
@@ -676,6 +926,9 @@ components:
 
     UserLogin:
       type: object
+      required:
+        - email
+        - password
       properties:
         email:
           type: string
@@ -690,6 +943,10 @@ components:
 
     ArtistCreate:
       type: object
+      required:
+        - name
+        - genre
+        - bio
       properties:
         name:
           type: string
@@ -706,10 +963,6 @@ components:
         imageBase64:
           type: string
           description: "Imagem do artista em base64 (opcional)"
-      required:
-        - name
-        - genre
-        - bio 
       example:
         name: "Artista Exemplo"
         genre: "Pop"
@@ -719,6 +972,10 @@ components:
 
     SongsCreate:
       type: object
+      required:
+        - title
+        - duration
+        - artistName
       properties:
         title:
           type: string
@@ -726,9 +983,23 @@ components:
         duration:
           type: string
           description: "tempo de duração das musicas"
-        Artist:
+        artistName:
           type: string
           description: "nome do artista"
+        imageURL:
+          type: string
+          description: "URL da imagem do artista"
+        imageBase64:
+          type: string
+          description: "Imagem do artista em base64 (opcional)"
+      example:
+        title: "Música Exemplo"
+        duration: "3:45"
+        artistName: "Artista Exemplo"
+        imageURL: "https://example.com/image.jpg"
+        imageBase64: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+
+
 
 
 
