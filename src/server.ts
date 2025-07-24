@@ -4,7 +4,7 @@ import AdminRouters from './routers/admin/admin.js';
 import ArtistRouters from './routers/artists/artist.js';
 import SongsRouter from './routers/artists/songs/song.js';
 import AlbunsRouter from './routers/artists/albuns/album.js'
-
+import cors from 'cors'
 import { authMiddleware } from './middlewares/auth.js';
 import YAML from 'yamljs';
 import swaggerUi from 'swagger-ui-express';
@@ -15,6 +15,7 @@ const server = express();
 
 const port = 3000;
 server.use(express.json())
+server.use(cors())
 
 server.use('/user', UserRouters);
 server.use('/admin', AdminRouters);
