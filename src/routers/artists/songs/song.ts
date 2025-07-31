@@ -1,7 +1,7 @@
-import { CreateSong } from "../../../controllers/songs/create";
-import { DeleteSong } from "../../../controllers/songs/delete";
-import { ListSongs } from "../../../controllers/songs/list";
-import { UpdateSong } from "../../../controllers/songs/update";
+import { CreateSong } from "../../../services/controllers/songs/create";
+import { DeleteSong } from "../../../services/controllers/songs/delete";
+import { ListSongs } from "../../../services/controllers/songs/list";
+import { UpdateSong } from "../../../services/controllers/songs/update";
 import express from "express";
 
 

@@ -1,8 +1,8 @@
 import express from "express";
-import { CreateArtist } from "../../controllers/artists/create";
-import { ListArtists } from "../../controllers/artists/list";
-import { DeleteArtist } from "../../controllers/artists/delete";
-import { UpdateArtist } from "../../controllers/artists/update";
+import { CreateArtist } from "../../services/controllers/artists/create";
+import { ListArtists } from "../../services/controllers/artists/list";
+import { DeleteArtist } from "../../services/controllers/artists/delete";
+import { UpdateArtist } from "../../services/controllers/artists/update";
 
 const router = express.Router();
 

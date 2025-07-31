@@ -1,8 +1,8 @@
 import express from "express";
-import { CreateAlbum } from "../../../controllers/albuns/create";
-import { ListAlbuns } from "../../../controllers/albuns/list";
-import { UpdateAlbuns } from "../../../controllers/albuns/update";
-import { DeleteAlbum } from "../../../controllers/albuns/delete";
+import { CreateAlbum } from "../../../services/controllers/albuns/create";
+import { ListAlbuns } from "../../../services/controllers/albuns/list";
+import { UpdateAlbuns } from "../../../services/controllers/albuns/update";
+import { DeleteAlbum } from "../../../services/controllers/albuns/delete";
 
 
 const router = express.Router();

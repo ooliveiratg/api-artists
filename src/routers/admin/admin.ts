@@ -1,6 +1,6 @@
 import express from "express";
-import { Registeradmin } from "../../controllers/admin/register";
-import { LoginAdmin } from "../../controllers/admin/login";
+import { Registeradmin } from "../../services/controllers/admin/register";
+import { LoginAdmin } from "../../services/controllers/admin/login";
 
 const router = express.Router();
 
